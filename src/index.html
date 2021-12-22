@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <title>供应室PDA接口程序--历史发布</title>
+    <link rel="stylesheet" href="./css/weui.css" />
+    <link rel="stylesheet" href="./css/example.css" />
+</head>
+
+<body ontouchstart>
+    <script type="text/javascript">
+        document.body.style.webkitTextSizeAdjust = JSON.parse(window.__wxWebEnv.getEnv()).fontScale + '%';
+    </script>
+
+    <span aria-hidden="true" id="js_a11y_comma" class="weui-hidden_abs">，</span>
+
+    <div class="container" id="container"></div>
+
+    <script type="text/html" id="tpl_home">
+        <div class="page">
+            <div class="page__hd">
+                <h1 class="page__title">
+                    <img src="./images/notify.png" alt="发布日志" height="21px" />
+                </h1>
+                <p class="page__desc">供应室PDA接口程序--历史发布</p>
+            </div>
+            <div class="page__bd page__bd_spacing">
+                <ul role="menubar" aria-label="历史发布">
+                    <li role="none">
+                        <div class="weui-flex js_category" aria-haspopup="true" aria-expanded="false">
+                            <p class="weui-flex__item">2021-12-21【大屏幕接口发布】</p>
+                            <img src="./images/icon_nav_form.png" alt=" 展开" role="button">
+                        </div>
+                        <div class="page__category js_categoryInner" role="menu" aria-hidden="true">
+                            <div class="weui-cells page__category-content">
+                                1.新增接口调用webconfig配置记录字段，所有的接口调用将记录当下的节点信息，以便后期查找原因。【12-20】<br /> 2.新增关于大屏幕清洗流程数据的状态图显示接口。【12-20】
+                                <br /> 3.新增关于大屏幕机器的状态信息和器械包状态信息的接口。【12-21】
+                                <br />
+                            </div>
+                        </div>
+                    </li>
+                    <li role="none">
+                        <div class="weui-flex js_category" aria-haspopup="true" aria-expanded="false">
+                            <p class="weui-flex__item">2021-12-14【重大BUG修复】</p>
+                            <img src="./images/icon_nav_form.png" alt=" 展开" role="button">
+                        </div>
+                        <div class="page__category js_categoryInner" role="menu" aria-hidden="true">
+                            <div class="weui-cells page__category-content">
+                                1.修复灭菌物品装载包扫描异常提示“治疗包属于高温灭菌包,不能放入低温灭菌器中灭菌”的问题【来源永鼎】【12-14】<br /> 2.修复手术器械发放科室显示跟PC端不同步的问题【来源永鼎】【12-14】
+                                <br />
+                            </div>
+                        </div>
+                    </li>
+                    <li role="none">
+                        <div class="weui-flex js_category" aria-haspopup="true" aria-expanded="false">
+                            <p class="weui-flex__item">2021-12-10【重要器械问题修复】</p>
+                            <img src="./images/icon_nav_form.png" alt=" 展开" role="button">
+                        </div>
+                        <div class="page__category js_categoryInner" role="menu" aria-hidden="true">
+                            <div class="weui-cells page__category-content">
+                                1.清洗回收模块新增一般器械回收物品删除【来源顺德】【12-10】<br /> 2.修复系统内部自动执行脚本超时的问题【来源内测】【12-10】
+                                <br /> 3.重要器械物品信息扫描添加删除接口修复多个回收物品无法删除问题【来源肿瘤医院】【12-3】
+                                <br /> 4.新增手术器械发放模块中通过点击物品名称查看该物品的库存情况详情接口【来源顺德】【11-10】
+                                <br />
+                            </div>
+                        </div>
+                    </li>
+                    <li role="none">
+                        <div class="weui-flex js_category" aria-haspopup="true" aria-expanded="false">
+                            <p class="weui-flex__item">2021-10-28【重要器械问题修复】</p>
+                            <img src="./images/icon_nav_form.png" alt=" 展开" role="button">
+                        </div>
+                        <div class="page__category js_categoryInner" role="menu" aria-hidden="true">
+                            <div class="weui-cells page__category-content">
+                                1.新增自动化执行消息推送接口和周期化定时自动执行任务的功能【来源肿瘤医院】【10-27】<br /> 2.修改周期化定时执行记录延时删除策略，时间由一天延长到一年【来源肿瘤医院】【10-28】
+                                <br /> 3.所有表自动判断新增添加DEVICEFLAG字段，标识数据的设备来源信息
+                                <br /> 4.修复特殊物品发放接口在先收后发模式下无法正常获取到回收数量的问题
+                                <br />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                var winH = $(window).height();
+                var categorySpace = 10;
+
+                function expandMenu() {
+                    var $this = $(this),
+                        $inner = $this.next('.js_categoryInner'),
+                        $page = $this.parents('.page'),
+                        $parent = $(this).parent('li');
+                    var innerH = $inner.data('height');
+
+                    if (!innerH) {
+                        $inner.css('height', 'auto');
+                        innerH = $inner.height();
+                        $inner.removeAttr('style');
+                        $inner.data('height', innerH);
+                    }
+
+                    if ($parent.hasClass('js_show')) {
+                        $parent.removeClass('js_show');
+                        $this.attr('aria-expanded', 'false');
+                        $this.children('img').attr('alt', ' 展开');
+                        $inner.attr('aria-hidden', 'true');
+                        $('.js_item', $(this).siblings()).attr('tabindex', '-1');
+                    } else {
+                        $parent.siblings().removeClass('js_show');
+                        $parent.siblings().children('.js_category').attr('aria-expanded', 'false');
+                        $parent.siblings().children('.js_category img').attr('alt', ' 展开');
+                        $parent.siblings().children('.js_categoryInner').attr('aria-hidden', 'true');
+                        $('.js_item', $parent.siblings().children('.js_categoryInner')).attr('tabindex', '-1');
+
+                        $parent.addClass('js_show');
+                        $this.attr('aria-expanded', 'true');
+                        $this.children('img').attr('alt', ' 收起');
+                        $inner.attr('aria-hidden', 'false');
+                        $('.js_item', $(this).siblings()).attr('tabindex', '0');
+
+                        if (this.offsetTop + this.offsetHeight + innerH > $page.scrollTop() + winH) {
+                            var scrollTop = this.offsetTop + this.offsetHeight + innerH - winH + categorySpace;
+
+                            if (scrollTop > this.offsetTop) {
+                                scrollTop = this.offsetTop - categorySpace;
+                            }
+
+                            $page.scrollTop(scrollTop);
+                        }
+                    }
+
+                    var winH = $(window).height();
+                    var $foot = $('body').find('.page__ft');
+                    if ($foot.length < 1) return;
+
+                    if ($foot.position().top + $foot.height() < winH) {
+                        $foot.addClass('j_bottom');
+                    } else {
+                        $foot.removeClass('j_bottom');
+                    }
+                }
+
+                $('.js_category').attr('tabindex', '0');
+                $('.js_item').attr('tabindex', '0');
+                $('.js_item', $('.js_category').siblings()).attr('tabindex', '-1');
+
+                $('.js_item').on('click', function() {
+                    var id = $(this).data('id');
+                    window.pageManager.go(id);
+                });
+                $('.js_category').on('click', function() {
+                    $(this).attr('aria-live', 'assertive');
+                    expandMenu.call(this);
+                });
+                $('.js_category').on('keydown', function(event) {
+                    if (event.keyCode === 13) {
+                        expandMenu.call(this);
+                    }
+                });
+            });
+        </script>
+
+        <script type="text/template" id="footerTmpl">
+            <div class="page__ft">
+                <img src="images/icon_footer_link.png" />
+            </div>
+        </script>
+        <script src="./zepto.min.js"></script>
+        <script src="./example.js"></script>
+</body>
+
+</html>
