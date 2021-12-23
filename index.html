@@ -24,10 +24,11 @@
                 <h1 class="page__title">
                     <img src="./images/notify.png" alt="发布日志" height="21px" />
                 </h1>
-                <p class="page__desc">供应室PDA接口程序--历史发布</p>
+                <p class="page__desc">供应室PDA接口程序--历史发布 <a style='margin-left:20px' href='download/供应室PDA接口程序-20211223.rar'>最新下载</a></p>
             </div>
             <div class="page__bd page__bd_spacing">
                 <ul role="menubar" aria-label="历史发布">
+                    <li role="none">{{#}}</li>
                     <li role="none">
                         <div class="weui-flex js_category" aria-haspopup="true" aria-expanded="false">
                             <p class="weui-flex__item">2021-12-21【大屏幕接口发布】</p>
@@ -161,6 +162,33 @@
                         expandMenu.call(this);
                     }
                 });
+
+
+                /*
+                    关于markdown语法解析函数
+                */
+                function markedFn(res) {
+                    if (!res) {
+                        return '';
+                    } else {
+                        var str = res.replace(/(\*\*|__)(.*?)(\*\*|__)/g, '') //全局匹配内粗体
+                            .replace(/\!\[[\s\S]*?\]\([\s\S]*?\)/g, '') //全局匹配图片
+                            .replace(/\[[\s\S]*?\]\([\s\S]*?\)/g, '') //全局匹配连接
+                            .replace(/<\/?.+?\/?>/g, '') //全局匹配内html标签
+                            .replace(/(\*)(.*?)(\*)/g, '') //全局匹配内联代码块
+                            .replace(/`{1,2}[^`](.*?)`{1,2}/g, '') //全局匹配内联代码块
+                            .replace(/```([\s\S]*?)```[\s]*/g, '') //全局匹配代码块
+                            .replace(/\~\~(.*?)\~\~/g, '') //全局匹配删除线
+                            .replace(/[\s]*[-\*\+]+(.*)/g, '') //全局匹配无序列表
+                            .replace(/[\s]*[0-9]+\.(.*)/g, '') //全局匹配有序列表
+                            .replace(/(#+)(.*)/g, '') //全局匹配标题
+                            .replace(/(>+)(.*)/g, '') //全局匹配摘要
+                            .replace(/\r\n/g, "") //全局匹配换行
+                            .replace(/\n/g, "") //全局匹配换行
+                            .replace(/\s/g, "") //全局匹配空字符;
+                        return str.slice(0, 155);
+                    }
+                }
             });
         </script>
 
