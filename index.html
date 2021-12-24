@@ -24,7 +24,8 @@
                 <h1 class="page__title">
                     <img src="./images/notify.png" alt="发布日志" height="21px" />
                 </h1>
-                <p class="page__desc">供应室PDA接口程序--历史发布 <a style='margin-left:20px' href='download/供应室PDA接口程序-20211223.rar'>最新下载</a></p>
+                <!-- <p class="page__desc">供应室PDA接口程序--历史发布 <a style='margin-left:20px' href="download/供应室PDA接口程序-20211224.rar" )>最新下载</a></p> -->
+                <p class="page__desc">供应室PDA接口程序--历史发布 <a style='margin-left:20px' class='down'>最新下载</a></p>
             </div>
             <div class="page__bd page__bd_spacing">
                 <ul role="menubar" aria-label="历史发布">
@@ -163,6 +164,9 @@
                     }
                 });
 
+                var date = new Date();
+                var url = "download/供应室PDA接口程序-" + new Date().getFullYear() + new Date().getMonth() + new Date().getDate() + ".rar"
+                $('.down').attr('href', url);
 
                 /*
                     关于markdown语法解析函数
