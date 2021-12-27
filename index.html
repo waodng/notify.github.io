@@ -11,7 +11,15 @@
 
 <body ontouchstart>
     <script type="text/javascript">
-        document.body.style.webkitTextSizeAdjust = JSON.parse(window.__wxWebEnv.getEnv()).fontScale + '%';
+        if (window.__wxWebEnv && window.__wxWebEnv.getEnv()) {
+            document.body.style.webkitTextSizeAdjust = JSON.parse(window.__wxWebEnv.getEnv()).fontScale + '%';
+        }
+
+        var userAgent = navigator.userAgent;
+        //判断是否Chrome浏览器
+        if (userAgent.indexOf("Chrome") == -1) {
+            document.write("<h3>该浏览器不支持，请使用最新IE Edge或谷歌浏览器</h3>");
+        }
     </script>
 
     <span aria-hidden="true" id="js_a11y_comma" class="weui-hidden_abs">，</span>
@@ -164,7 +172,7 @@
                 });
 
                 var date = new Date();
-                var url = "download/供应室PDA接口程序-" + new Date().getFullYear() + new Date().getMonth() + new Date().getDate() + ".rar"
+                var url = "download/供应室PDA接口程序-" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() + ".rar";
                 $('.down').attr('href', url);
 
                 /*
