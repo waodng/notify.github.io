@@ -26,11 +26,15 @@ cd %TargetRootFolder%
 del /s /q "packages.config"
 rd /s /q "Build/Controllers"
 del /s /q *.rar
-copy "Build\发布日志.md" %RemotePath%
+
+rem============================分析文件===============================
+for /f "tokens=*" %%i in (Build\发布日志.md) do echo %%i>>%RemotePath%\template.html
+
+# copy "Build\发布日志.md" %RemotePath%
 
 rem============================打包压缩文件===========================
 C:\windows\system32\XCOPY Build 供应室PDA接口程序\ /E /Y
-"C:/Program Files/WinRAR/Rar.exe" a 供应室PDA接口程序-%date:~0,4%%date:~5,2%%date:~8,2%.rar 供应室PDA接口程序
+"C:/Program Files/WinRAR/Rar.exe" a 供应室PDA接口程序-%date:~0,4%%date:~5,2%%date:~8,2%.rar 供应室PDA接口程序 -phsoft.top
 rd /s /q 供应室PDA接口程序
 del /s /q %RemotePath%\download\*.rar
 copy 供应室PDA接口程序-%date:~0,4%%date:~5,2%%date:~8,2%.rar %RemotePath%\download
