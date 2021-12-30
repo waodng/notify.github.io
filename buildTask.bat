@@ -1,0 +1,27 @@
+SET Path=E:/Projects/供应室系统webApi/CSSDMS.WebApi
+SET RemotePath=E:\OpenSource\notify.github.io
+SET TargetRootFolder=D:/publish
+
+SET IDEPath="D:/Program Files (x86)/Microsoft Visual Studio 12.0/Common7/IDE"
+SET dotNetFrameworkDrive=c:
+SET IdeDrive=d:
+SET TargetFolderDrive=d:
+
+rem============================强制关闭IIS进程=======================
+ C:\windows\system32\taskkill /im w3wp.exe -f 
+
+%dotNetFrameworkDrive%
+
+rem============================删除文件===============================
+%TargetFolderDrive%
+cd %TargetRootFolder%
+del /s /q "packages.config"
+del /s /q *.rar
+
+rem============================打包压缩文件===========================
+"C:/Program Files/WinRAR/Rar.exe" a -r -ep1 供应室PDA接口程序-%date:~0,4%%date:~5,2%%date:~8,2%.rar %Path%\CSSDMS.WebApi\obj\Debug\Package\PackageTmp\* -phsoft.top
+del /s /q %RemotePath%\download\*.rar
+copy 供应室PDA接口程序-%date:~0,4%%date:~5,2%%date:~8,2%.rar %RemotePath%\download
+
+
+pause

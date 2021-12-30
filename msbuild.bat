@@ -18,7 +18,7 @@ cd %dotNetFrameworkPath%
 msbuild %Path%/CSSDMS.WebApi/CSSDMS.WebApi.csproj /t:ResolveReferences;Compile /t:_WPPCopyWebApplication /p:Configuration=Debug /p:_ResolveReferenceDependencies=true /p:WebProjectOutputDir=%TargetRootFolder%/Build >>%TargetRootFolder%/执行记录.txt
 
 # 基于项目内的发布文件发布，缺失目标文件，执行报错
-# msbuild %Path%/CSSDMS.WebApi.sln /p:Configuration=Debug;DeployOnBuild=true;PublishProfile=publish.pubxml >>%TargetRootFolder%/执行记录.txt
+% msbuild %Path%/CSSDMS.WebApi.sln /p:Configuration=Debug;DeployOnBuild=true;PublishProfile=publish.pubxml >>%TargetRootFolder%/执行记录.txt %
 
 rem============================删除文件===============================
 %TargetFolderDrive%
@@ -27,10 +27,10 @@ del /s /q "packages.config"
 rd /s /q "Build/Controllers"
 del /s /q *.rar
 
-rem============================分析文件===============================
-for /f "tokens=*" %%i in (Build\发布日志.md) do echo %%i>>%RemotePath%\template.html
+# rem============================分析文件===============================
+% for /f "tokens=*" %%i in (Build\发布日志.md) do echo %%i>>%RemotePath%\template.html %
 
-# copy "Build\发布日志.md" %RemotePath%
+% copy "Build\发布日志.md" %RemotePath% %
 
 rem============================打包压缩文件===========================
 C:\windows\system32\XCOPY Build 供应室PDA接口程序\ /E /Y
