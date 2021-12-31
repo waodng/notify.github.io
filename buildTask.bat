@@ -8,7 +8,7 @@ SET IdeDrive=d:
 SET TargetFolderDrive=d:
 
 rem============================强制关闭IIS进程=======================
- C:\windows\system32\taskkill /im w3wp.exe -f 
+ C:\windows\system32\taskkill /im w3wp.exe /t -f 
 
 %dotNetFrameworkDrive%
 
@@ -23,5 +23,12 @@ rem============================打包压缩文件===========================
 del /s /q %RemotePath%\download\*.rar
 copy 供应室PDA接口程序-%date:~0,4%%date:~5,2%%date:~8,2%.rar %RemotePath%\download
 
+
+rem============================git源码提交============================
+ E:
+ cd %RemotePath%
+ "D:\Program Files\Git\bin\git" add .
+ "D:\Program Files\Git\bin\git" commit -m %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%
+ "D:\Program Files\Git\bin\git" push origin master
 
 pause
