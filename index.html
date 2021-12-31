@@ -32,11 +32,10 @@
                 <h1 class="page__title">
                     <img src="./images/notify.png" alt="发布日志" height="21px" />
                 </h1>
-                <!-- <p class="page__desc">供应室PDA接口程序--历史发布 <a style='margin-left:20px' href="download/供应室PDA接口程序-20211224.rar" )>最新下载</a></p> -->
-                <p class="page__desc">供应室PDA接口程序--历史发布 <a style='margin-left:20px' class='down'>最新下载</a></p>
+                <p class="page__desc">供应室PDA接口程序--历史发布 <a style='margin-left:20px' class='pcdown'>PC下载</a><a style='margin-left:20px' class='pdadown'>PDA下载</a></p>
             </div>
             <div class="page__bd page__bd_spacing">
-                <ul role="menubar" aria-label="历史发布">
+                <!-- <ul role="menubar" aria-label="历史发布">
                     <li role="none">
                         <div class="weui-flex js_category" aria-haspopup="true" aria-expanded="false">
                             <p class="weui-flex__item">2021-12-27【大屏幕接口发布】</p>
@@ -89,8 +88,8 @@
                                 <br />
                             </div>
                         </div>
-                    </li>
-                </ul>
+                    </li> 
+                </ul>-->
             </div>
         </div>
         <script type="text/javascript">
@@ -161,7 +160,7 @@
                     var id = $(this).data('id');
                     window.pageManager.go(id);
                 });
-                $('.js_category').on('click', function() {
+                $('.js_category').live('click', function() {
                     $(this).attr('aria-live', 'assertive');
                     expandMenu.call(this);
                 });
@@ -172,8 +171,14 @@
                 });
 
                 var date = new Date();
-                var url = "download/供应室PDA接口程序-" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() + ".rar";
-                $('.down').attr('href', url);
+                var pcurl = "download/供应室PDA接口程序-" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() + ".rar";
+                $('.pcdown').attr('href', pcurl);
+                var pdaurl = "download/cssd.zip";
+                $('.pdadown').attr('href', pdaurl);
+
+                $.get('template.html', function(response) {
+                    $('.page__bd').html(response)
+                })
 
                 /*
                     关于markdown语法解析函数
