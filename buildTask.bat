@@ -29,6 +29,6 @@ rem============================gitÔ´ÂëÌá½»============================
  cd %RemotePath%
  "D:\Program Files\Git\bin\git" add .
  "D:\Program Files\Git\bin\git" commit -m %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%
- "D:\Program Files\Git\bin\git" push origin master
+ "D:\Program Files\Git\bin\git" push -u origin master
 
 pause
