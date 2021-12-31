@@ -138,8 +138,9 @@
                 $('.pcdown').attr('href', pcurl);
                 var pdaurl = "download/cssd.zip";
                 $('.pdadown').attr('href', pdaurl);
-
-                $.get('template.html', function(response) {
+                $.get('template.html', {
+                    t: Math.random()
+                }, function(response) {
                     $('.page__bd').html(response)
                 })
 
