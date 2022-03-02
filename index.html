@@ -42,10 +42,18 @@
                     <a class='pcdown'>PDA接口下载</a>
                     <a class='pdadown'>APP下载</a>
                     <a href="download/screen.zip">大屏下载</a>
-                    <span class="page_tj">发布统计：27</span></p>
+                    <span class="page_tj">发布统计：28</span></p>
             </div>
             <div class="page__bd page__bd_spacing"><ul role='menubar' aria-label='历史发布'>
 <li role='none'>
+<div class='weui-flex js_category' aria-haspopup='true' aria-expanded='false'>
+<p class='weui-flex__item'>2022-03-02【重大BUG修复】</p> 
+<img src='./images/icon_nav_form.png' alt=' 展开' role='button'> 
+</div>
+ <div class='page__category js_categoryInner' role='menu' aria-hidden='true'>
+ <div class='weui-cells page__category-content'>
+1.修复上一个版本发布导致整个PDA因webconfig字段重复添加无法使用的问题。【03-02】<br />
+</div></div></li><li role='none'>
 <div class='weui-flex js_category' aria-haspopup='true' aria-expanded='false'>
 <p class='weui-flex__item'>2022-02-23【常规修复】</p> 
 <img src='./images/icon_nav_form.png' alt=' 展开' role='button'> 
@@ -315,7 +323,7 @@
                 });
 
                 var date = new Date();
-                var pcurl = "download/供应室PDA接口程序-20220223.rar";
+                var pcurl = "download/供应室PDA接口程序-20220302.rar";
                 $('.pcdown').attr('href', pcurl);
                 $('.pcdown').on('click', function() {
                     // alert("1");
@@ -400,6 +408,7 @@
 </body>
 
 </html>
+
 
 
 
