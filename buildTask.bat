@@ -23,6 +23,9 @@ rem============================打包压缩文件===========================
 del /s /q %RemotePath%\download\*.rar
 copy 供应室PDA接口程序-%date:~0,4%%date:~5,2%%date:~8,2%.rar %RemotePath%\download
 
+rem============================服务器IIS部署拷贝============================
+cd %TargetRootFolder%
+C:\Windows\System32\xcopy.exe Build \\192.168.3.222\gysapi /E /H /Y
 
 rem============================git源码提交============================
  E:
