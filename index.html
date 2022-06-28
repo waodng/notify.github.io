@@ -404,7 +404,7 @@
 				
                 $('.showSystem').forEach(el =>{
                    var pInfo = $(el).attr('port');
-                   $.get('PublicIp.txt',function(data,status){
+                   $.get('publicIp.txt',function(data,status){
                         $(el).attr('href','http://'+data+':'+pInfo);
                    })
                 });
