@@ -45,9 +45,9 @@
                     <!-- class="page__title" -->
                     <img src="./images/notify.png" alt="发布日志" height="21px" />
                     <span style="color:black;font-size:16px">项目演示：</span>
-                    <a class="url_style" target="_blank" href="http://115.192.84.110:8088">供应室4.0</a>
-                    <a class="url_style" target="_blank" href="http://115.192.84.110:801">血透系统</a>
-                    <a class="url_style" target="_blank" href="http://115.192.84.110:1080/swagger/ui/index">供应室接口平台</a>
+                    <a class="url_style showSystem" target="_blank" port="8088">供应室4.0</a>
+                    <a class="url_style showSystem" target="_blank" port="801">血透系统</a>
+                    <a class="url_style showSystem" target="_blank" port="9088/swagger/ui/index">供应室接口平台</a>
 
                 </h1>
                 <p class="page__desc">供应室跨平台立体解决方案--历史发布<a target="_blank" style="margin-left:10px;font-size:16px;color:red;" href="help.html">在线帮助</a><a class="url_style" target="_blank" href="#">更多</a></p>
@@ -55,18 +55,10 @@
                     <a class='pcdown'>PDA接口下载</a>
                     <a class='pdadown'>APP下载</a>
                     <a href="download/screen.zip">大屏下载</a>
-                    <span class="page_tj">发布统计：61</span></p>
+                    <span class="page_tj">发布统计：59</span></p>
             </div>
             <div class="page__bd page__bd_spacing"><ul role='menubar' aria-label='历史发布'>
 <li role='none'>
-<div class='weui-flex js_category' aria-haspopup='true' aria-expanded='false'>
-<p class='weui-flex__item'>2022-05-05【修复消毒接口】【更新：所有客户端】</p> 
-<img src='./images/icon_nav_form.png' alt=' 展开' role='button'> 
-</div>
- <div class='page__category js_categoryInner' role='menu' aria-hidden='true'>
- <div class='weui-cells page__category-content'>
-1.修复消毒接口关于数据查询部分以及消毒结束的接口等【05-11】<br />
-</div></div></li><li role='none'>
 <div class='weui-flex js_category' aria-haspopup='true' aria-expanded='false'>
 <p class='weui-flex__item'>2022-05-05【新增接口】【更新：所有客户端】</p> 
 <img src='./images/icon_nav_form.png' alt=' 展开' role='button'> 
@@ -409,9 +401,16 @@
                         expandMenu.call(this);
                     }
                 });
+				
+                $('.showSystem').forEach(el =>{
+                   var pInfo = $(el).attr('port');
+                   $.get('PublicIp.txt',function(data,status){
+                        $(el).attr('href','http://'+data+':'+pInfo);
+                   })
+                });
 
                 var date = new Date();
-                var pcurl = "download/供应室PDA接口程序-20220530.rar";
+                var pcurl = "download/供应室PDA接口程序-20220628.rar";
                 $('.pcdown').attr('href', pcurl);
                 $('.pcdown').on('click', function() {
                     // alert("1");
@@ -496,5 +495,6 @@
 </body>
 
 </html>
+
 
 
