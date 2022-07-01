@@ -402,13 +402,13 @@
                     }
                 });
 				
-                $('.showSystem').forEach(el =>{
-                   var pInfo = $(el).attr('port');
-                   $.get('publicIp.txt',function(data,status){
+                $.get('publicIp.txt',{'time':new Date().getTime()},function(data,status){
+                    $('.showSystem').forEach(el =>{
+                        var pInfo = $(el).attr('port');
                         $(el).attr('href','http://'+data+':'+pInfo);
-                   })
+                    });
                 });
-
+               
                 var date = new Date();
                 var pcurl = "download/供应室PDA接口程序-20220628.rar";
                 $('.pcdown').attr('href', pcurl);
